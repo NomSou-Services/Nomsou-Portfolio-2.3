@@ -1,0 +1,51 @@
+/* =============================================================================
+   fonts.css — the two typefaces, served from this site instead of Google.
+   -----------------------------------------------------------------------------
+   Self-hosting means: one less third-party request, faster first paint, no
+   visitor data sent to another company, and the site still looks right if
+   Google Fonts is blocked or down. The .woff2 files live in assets/fonts/.
+   font-display: swap shows fallback text immediately rather than nothing.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+}

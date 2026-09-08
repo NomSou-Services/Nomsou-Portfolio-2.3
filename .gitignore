@@ -1,0 +1,16 @@
+# Vercel
+.vercel
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Never commit these — the anon key in js/config.js is fine and public,
+# but anything below is not.
+.env
+.env.*
+*.pem
