@@ -100,19 +100,41 @@ screenshots, and `js/config.js` holds `YOUR-PROJECT-REF` until you paste keys.
   font swap had been applied to the output files, not to the generator. Fixed
   at the source and re-verified.
 
+## Deployment (added this session)
+
+Target is **Vercel**, via GitHub so every push redeploys.
+
+- `vercel.json` added — security headers, cache headers, `cleanUrls: true`
+- `.gitignore` added
+- Git repo initialised with two commits; the zip contains the `.git` folder,
+  so pushing is `git remote add origin ... && git push -u origin main`
+- Canonical tags and `sitemap.xml` now name the clean URLs Vercel serves
+  (`/work/cornerstone-realty`, no `.html`). Internal links keep the `.html`
+  so the folder still opens straight off the desktop; Vercel redirects them.
+- `netlify.toml` kept, so Netlify remains an option
+- **Waiting on:** the GitHub repo. Once it exists and is pushed, the Vercel
+  project gets created and linked from this session.
+
+Considered and rejected: uploading the file tree directly through the Vercel
+connection. It would have meant either dropping the self-hosted fonts or a
+build step, and the second contradicts the no-build-step requirement.
+
 ## Next steps
 
-1. Paste real Supabase keys into `js/config.js` and run `supabase/schema.sql`
-   (README has the click path).
-2. Replace `assets/*.svg` with real screenshots or Figma exports at the same
+1. Create the GitHub repo and push (commands in the README), then the Vercel
+   project can be linked and the site goes live.
+2. Paste real Supabase keys into `js/config.js` and run `supabase/schema.sql`
+   (README has the click path). Until then the live contact form will tell
+   visitors it cannot send — worth doing before you share the URL.
+3. Replace `assets/*.svg` with real screenshots or Figma exports at the same
    dimensions — covers 1400×600, figures 1200×700.
-3. Decide the real domain and update the `canonical` / `og:url` tags,
+4. Decide the real domain and update the `canonical` / `og:url` tags,
    `sitemap.xml`, and `robots.txt` — they currently assume
    `nomsouservices.com`.
-4. Confirm `hello@nomsouservices.com` is a live mailbox, or swap the address.
-5. Add a Supabase webhook so new inquiries reach your inbox instead of only the
+5. Confirm `hello@nomsouservices.com` is a live mailbox, or swap the address.
+6. Add a Supabase webhook so new inquiries reach your inbox instead of only the
    dashboard.
-6. Run Lighthouse on the deployed URL — this build has not been measured on
+7. Run Lighthouse on the deployed URL — this build has not been measured on
    real hosting, only checked locally.
-7. Consider whether RAD and NEST deserve cards on the homepage alongside the
+8. Consider whether RAD and NEST deserve cards on the homepage alongside the
    spec work; the grid takes six cards without a layout change.
