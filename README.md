@@ -104,6 +104,13 @@ the `.html`. There is no build step — Vercel serves the folder.
 Every push to `main` redeploys automatically after that. Pull requests get
 their own preview URL.
 
+One detail worth knowing: clean URLs mean the live address of a case study is
+`/work/cornerstone-realty`, with no `.html`. The links inside the pages still
+say `cornerstone-realty.html` so the folder also works when you open
+`index.html` straight off your desktop — Vercel redirects those to the clean
+address. The `canonical` tags and `sitemap.xml` already name the clean URLs,
+which is what search engines index.
+
 ### First push
 
 ```bash
