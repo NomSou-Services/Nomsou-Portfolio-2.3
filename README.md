@@ -145,17 +145,18 @@ values at the top under `:root`. Every screen updates.
 
 | Token | Value | Where it shows |
 | --- | --- | --- |
-| `--navy-deep` | `#1a2230` | Hero, dark sections, footer |
-| `--navy` | `#242f40` | Buttons, panels, quote band |
-| `--gold` | `#cca43b` | Accents on dark backgrounds |
-| `--gold-ink` | `#7a5f18` | Gold used as *text* on light backgrounds |
-| `--mist` | `#e5e5e5` | Body text on dark |
-| `--paper` | `#f6f6f4` | Light section background |
-| `--charcoal` | `#363636` | Body text on light |
+| `--navy-deep` / `--charcoal` | `#3D3B30` | Hero, footer, body and heading ink |
+| `--navy` | `#4D5061` | Buttons, panels, quote band |
+| `--gold` | `#E7E247` | Accents on dark backgrounds |
+| `--gold-ink` | `#615F1E` | Gold used as *text* on light backgrounds |
+| `--blue` | `#5C80BC` | Link underlines, focus rings on light |
+| `--blue-ink` | `#4A6696` | Link text on light backgrounds |
+| `--mist` / `--paper` | `#E9EDDE` | Light section background; body text on dark |
 
-`--gold-ink` exists because the brand gold only reaches 2.2:1 contrast on a
+`--gold-ink` exists because the brand gold only reaches 1.15:1 contrast on a
 light background — too low to read. The darker gold hits 5.6:1 and looks like
-the same color at label size.
+the same color at label size. `--blue-ink` is the same pattern for the medium
+blue (3.3:1 as-is; 4.9:1 darkened).
 
 **Add a fifth case study.**
 

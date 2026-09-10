@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="NomSou Services mark">
 <title>NomSou Services mark</title>
-<rect x="1" y="1" width="46" height="46" fill="none" stroke="#cca43b" stroke-width="2"/>
+<rect x="1" y="1" width="46" height="46" fill="none" stroke="#E7E247" stroke-width="2"/>
 <path d="M13 35 V13 L35 35 V13" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="square"/>
-<path d="M13 35 L35 13" stroke="#cca43b" stroke-width="2" opacity="0.9"/>
+<path d="M13 35 L35 13" stroke="#E7E247" stroke-width="2" opacity="0.9"/>
 </svg>
