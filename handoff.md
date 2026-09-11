@@ -16,9 +16,14 @@ multi-column footer. Agreed at the start of the session:
 
 ## Current state
 
-Complete and verified. Six HTML pages, one stylesheet, three JavaScript files,
-fourteen SVG assets, self-hosted fonts, a Supabase schema, and Netlify config.
-The site runs with no build step and no dependencies.
+**Live at https://nomsouservices.com** — pushed to GitHub, deployed on Vercel,
+custom domain attached. Six HTML pages, one stylesheet, three JavaScript
+files, fourteen SVG assets, self-hosted fonts, a Supabase schema, and Netlify
+config. The site runs with no build step and no dependencies.
+
+One thing is not finished: `js/config.js` on `main` still holds
+`YOUR-PROJECT-REF`, so the Supabase contact form is not wired up on the live
+site — it tells visitors it cannot send.
 
 Verification run against a local server:
 
@@ -112,8 +117,11 @@ Target is **Vercel**, via GitHub so every push redeploys.
   (`/work/cornerstone-realty`, no `.html`). Internal links keep the `.html`
   so the folder still opens straight off the desktop; Vercel redirects them.
 - `netlify.toml` kept, so Netlify remains an option
-- **Waiting on:** the GitHub repo. Once it exists and is pushed, the Vercel
-  project gets created and linked from this session.
+- **Done:** repo pushed to `souher88/Nomsou-Portfolio-2.3`, Vercel project
+  created and linked, and `nomsouservices.com` registered through Vercel and
+  attached as the canonical apex URL (no `www` redirect). Every push to
+  `main` redeploys. `nomsou-services.vercel.app` and
+  `nomsou-portfolio-2-3.vercel.app` stay aliased as fallbacks.
 
 Considered and rejected: uploading the file tree directly through the Vercel
 connection. It would have meant either dropping the self-hosted fonts or a
@@ -121,20 +129,31 @@ build step, and the second contradicts the no-build-step requirement.
 
 ## Next steps
 
-1. Create the GitHub repo and push (commands in the README), then the Vercel
-   project can be linked and the site goes live.
-2. Paste real Supabase keys into `js/config.js` and run `supabase/schema.sql`
-   (README has the click path). Until then the live contact form will tell
-   visitors it cannot send — worth doing before you share the URL.
+1. Paste real Supabase keys into `js/config.js` and run `supabase/schema.sql`
+   (README has the click path). Until then the live contact form tells
+   visitors it cannot send — the one item on this list that visitors can see.
+2. Add a Supabase webhook so new inquiries reach `nomsouservices@gmail.com`
+   instead of only the dashboard.
 3. Replace `assets/*.svg` with real screenshots or Figma exports at the same
    dimensions — covers 1400×600, figures 1200×700.
-4. Decide the real domain and update the `canonical` / `og:url` tags,
-   `sitemap.xml`, and `robots.txt` — they currently assume
-   `nomsouservices.com`.
-5. Confirm `hello@nomsouservices.com` is a live mailbox, or swap the address.
-6. Add a Supabase webhook so new inquiries reach your inbox instead of only the
-   dashboard.
-7. Run Lighthouse on the deployed URL — this build has not been measured on
+4. Run Lighthouse on the deployed URL — this build has not been measured on
    real hosting, only checked locally.
-8. Consider whether RAD and NEST deserve cards on the homepage alongside the
+5. Decide whether `hello@nomsouservices.com` stays alive as a forwarding
+   alias. Old business cards, PDFs, and cached search results still point at
+   it, so keeping the forward is the safe default.
+6. Update the contact address anywhere outside this repo that still carries
+   the old one — LinkedIn, the Instagram bio, Google Business Profile, and
+   proposal, invoice and email-signature templates.
+7. Consider whether RAD and NEST deserve cards on the homepage alongside the
    spec work; the grid takes six cards without a layout change.
+
+## Done since the build session
+
+- Repo created and pushed, Vercel project linked, `nomsouservices.com`
+  registered through Vercel and live. Canonical tags, `sitemap.xml` and
+  `robots.txt` already named this domain, so no markup change was needed.
+- Contact address swapped from `hello@nomsouservices.com` to
+  `nomsouservices@gmail.com` (2026-09-11): seven occurrences across
+  `index.html`, the four case study pages, and `js/main.js`. Both the
+  `mailto:` href and the visible text were changed in every HTML occurrence,
+  so no link points at the old address.
