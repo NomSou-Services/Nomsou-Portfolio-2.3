@@ -213,7 +213,7 @@
         })
         .catch(function (error) {
           showStatus(
-            "Something went wrong sending that. Email hello@nomsouservices.com and I will pick it up. (" +
+            "Something went wrong sending that. Email nomsouservices@gmail.com and I will pick it up. (" +
               error.message + ")",
             "error"
           );
