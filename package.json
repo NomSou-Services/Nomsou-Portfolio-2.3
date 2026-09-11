@@ -1,0 +1,13 @@
+{
+  "name": "nomsou-services",
+  "version": "1.0.0",
+  "description": "NomSou Services LLC - Web design and AI tools for real estate",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build step required'",
+    "lint": "echo 'No linter configured'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.12"
+  }
+}
