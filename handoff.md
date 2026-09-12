@@ -60,9 +60,10 @@ screenshots, and `js/config.js` holds `YOUR-PROJECT-REF` until you paste keys.
 
 1. **Design system first** — tokens for the NomSou brand board, a clamp()-based
    type scale, and layout primitives, all in one commented stylesheet.
-2. **Added `--gold-ink` (#7a5f18).** The brand gold reads at only 2.2:1 on a
-   light background. Every gold-as-text use on light now uses the darker tone
-   (5.6:1); brand gold is kept for dark panels, where it hits 6.8:1.
+2. **Derived darker "ink" tones for text on light.** An accent picked for a
+   fill is rarely dark enough to read as body text on a light ground, so every
+   accent-as-text use on light points at a derived tone instead. See the
+   palette note below for the current values.
 3. **Self-hosted the fonts** instead of linking Google Fonts — removes a
    third-party request, speeds up first paint, and keeps visitor data local.
 4. **Generated all artwork as SVG** so the site has no photo dependencies and
@@ -157,3 +158,43 @@ build step, and the second contradicts the no-build-step requirement.
   `index.html`, the four case study pages, and `js/main.js`. Both the
   `mailto:` href and the visible text were changed in every HTML occurrence,
   so no link points at the old address.
+
+## Palette change (2026-09-11)
+
+Recoloured from the Coolors board (charcoal olive / lime gold / slate) to a
+five-colour brand palette, applied on a 60 / 30 / 10 split:
+
+| Token | Value | Name | Share |
+| --- | --- | --- | --- |
+| `--paper` | `#faf7f2` | Warm white | 60% — the page ground |
+| `--navy` | `#18202f` | Midnight navy | 30% — hero, footer, contact, case heroes |
+| `--mist` | `#dce1e6` | Mist gray | 30% — light text and soft surfaces on dark |
+| `--slate` | `#68748a` | Slate blue | 30% — structural mid tone |
+| `--copper` | `#b8737f` | Copper | 10% — CTAs, rules, highlights, selection |
+
+Derived, because two brand colours fail AA as body text on `--paper`:
+
+- `--copper-ink` `#9d5764` — plain copper is 3.4:1; this is 4.9:1
+- `--slate-ink` `#626e84` — plain slate is 4.4:1; this is 4.8:1
+- `--mist-soft` `#a8b2c0` — secondary text on dark, 7.6:1 on `--navy`
+- `--copper-bright` `#c98996` — hover fills, and 12px labels over artwork
+
+Also changed, because the recolour exposed them:
+
+- **State colours are now separate from the brand.** `.form__status.is-success`
+  used the brand accent. With a rose-toned copper, success and error would have
+  been near-identical, so both now use `--state-success` `#8fb08a` and
+  `--state-error` `#f08a80`, deliberately outside the brand five.
+- **Alpha variants derive from `--*-rgb` triplets** rather than literal `rgba()`
+  values. Six stale literals still held the *old* palette in decimal form, which
+  no hex search would ever have found.
+- **Four `rgba(61, 59, 48), 0.15)` declarations had a misplaced paren** and had
+  never rendered. Those borders (work-card body, process items, case pages,
+  palette swatches) now appear for the first time.
+- Case-study palette swatches name the new colours. Client-specific hues —
+  Clay, Alpine, Tallgrass, Field Brown, Field Green, Ridge Blue — are unchanged.
+  Fieldnote previously printed `#E9EDDE` under two differently-named swatches.
+
+Verified: 0 text-contrast failures on the homepage at WCAG AA, no horizontal
+overflow at 375px, all 31 `var()` references resolve, and no old-palette hex
+remains in any CSS, HTML, SVG, or JS file.
