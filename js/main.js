@@ -212,9 +212,13 @@
           showStatus("Thanks — your message landed. I reply within two business days.", "success");
         })
         .catch(function (error) {
+          // The reason is for us, not for the visitor — a raw "Supabase is not
+          // configured" string in the UI just reads as broken software.
+          if (window.console && console.error) {
+            console.error("Inquiry submission failed:", error);
+          }
           showStatus(
-            "Something went wrong sending that. Email nomsouservices@gmail.com and I will pick it up. (" +
-              error.message + ")",
+            "Something went wrong sending that. Email nomsouservices@gmail.com and I will pick it up.",
             "error"
           );
         })
