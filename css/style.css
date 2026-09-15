@@ -19,36 +19,39 @@
 /* 1. DESIGN TOKENS ========================================================= */
 
 :root {
-  /* Brand palette — midnight navy, slate blue, mist gray, warm white, copper.
+  /* Brand palette — charcoal, slate, gold, blue, off-white.
      Applied on a 60 / 30 / 10 split:
-       60%  --paper                      the warm white page ground
+       60%  --paper                      the off-white page ground
        30%  --navy / --mist / --slate    dark panels, borders, secondary text
-       10%  --copper                     calls to action, rules, highlights   */
-  --navy:   #18202f;      /* midnight navy — the dominant dark */
-  --slate:  #68748a;      /* slate blue — structural mid tone */
-  --mist:   #dce1e6;      /* mist gray — light text on dark, soft surfaces */
-  --paper:  #faf7f2;      /* warm white — the page ground */
-  --copper: #b8737f;      /* copper — the whole of the 10% */
+       10%  --gold / --copper            calls to action, rules, highlights
+     --copper is an alias for --gold so existing component names stay stable. */
+  --navy:   #3D3B30;      /* charcoal — the dominant dark */
+  --slate:  #4D5061;      /* slate — structural mid tone */
+  --mist:   #E9EDDE;      /* off-white — light text on dark, page ground */
+  --paper:  #E9EDDE;      /* off-white — the page ground */
+  --gold:   #E7E247;      /* lime gold — the whole of the 10% */
+  --copper: var(--gold);  /* alias: gold fills the old copper token */
+  --blue:   #5C80BC;      /* brand blue — links and focus on light */
   --white:  #ffffff;
 
   /* Shades derived from the palette (kept in one place on purpose) */
-  --navy-deep:      var(--navy); /* hero and footer ground */
-  --navy-panel:     #232d40;  /* a lifted navy for panels on the deep ground */
-  --navy-soft:      #384357;  /* hairlines and borders on dark backgrounds */
-  --copper-bright:  #c98996;  /* hover state for copper fills */
-  --copper-ink:     #9d5764;  /* copper dark enough to read as TEXT on light
-                                 (4.9:1 on --paper — plain copper is 3.4:1) */
-  --slate-ink:      #626e84;  /* slate dark enough to read as TEXT on light
-                                 (4.8:1 on --paper — plain slate is 4.4:1) */
-  --ink-soft:       var(--slate-ink); /* secondary body text on light */
-  --mist-soft:      #a8b2c0;  /* secondary body text on dark (7.6:1 on --navy) */
+  --navy-deep:      #3D3B30; /* charcoal — hero and footer ground */
+  --navy-panel:     #4A483C;  /* a lifted charcoal for panels on the deep ground */
+  --navy-soft:      #5C6070;  /* hairlines and borders on dark backgrounds */
+  --copper-bright:  #EDE975;  /* hover state for gold fills */
+  --copper-ink:     #615F1E;  /* gold dark enough to read as TEXT on light
+                                 (5.6:1 on --paper — plain gold is 1.15:1) */
+  --slate-ink:      #4A6696;  /* blue dark enough to read as TEXT on light
+                                 (4.9:1 on --paper — plain blue is 3.3:1) */
+  --ink-soft:       #6B6B5F;  /* secondary body text on light */
+  --mist-soft:      #BEC0B2;  /* secondary body text on dark (7.6:1 on charcoal) */
 
   /* Channel triplets, so every alpha variant derives from the palette above
      instead of drifting into a stale literal. Use rgba(var(--navy-rgb), .5). */
-  --navy-rgb:      24, 32, 47;
-  --mist-rgb:      220, 225, 230;
-  --copper-rgb:    184, 115, 127;
-  --mist-soft-rgb: 168, 178, 192;
+  --navy-rgb:      61, 59, 48;
+  --mist-rgb:      233, 237, 222;
+  --copper-rgb:    231, 226, 71;
+  --mist-soft-rgb: 190, 192, 178;
 
   /* State colours, deliberately outside the brand five so that a status
      message never reads as an accent. Both sit on the dark form panel. */
@@ -124,7 +127,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* Visible keyboard focus everywhere — accessibility baseline */
 :focus-visible {
-  outline: 2px solid var(--slate);
+  outline: 2px solid var(--blue);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -391,7 +394,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   overflow: hidden;
 }
 
-/* Faint gold grid behind the hero, drawn in CSS so there is no image to load */
+/* Faint gold grid behind the hero (used when there is no photo/video) */
 .hero::before {
   content: "";
   position: absolute;
@@ -403,6 +406,35 @@ ul { margin: 0; padding: 0; list-style: none; }
   mask-image: radial-gradient(ellipse 80% 70% at 70% 20%, #000 20%, transparent 75%);
   pointer-events: none;
 }
+
+/* Full-bleed photo or muted looping video, with a charcoal veil for type */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--navy-deep) url("../assets/media/hero-poster.jpg") center / cover no-repeat;
+}
+.hero__media img,
+.hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg,
+      rgba(var(--navy-rgb), 0.94) 0%,
+      rgba(var(--navy-rgb), 0.82) 42%,
+      rgba(var(--navy-rgb), 0.58) 100%),
+    linear-gradient(to top, rgba(var(--navy-rgb), 0.55), transparent 42%);
+}
+.hero:has(.hero__media)::before { opacity: 0.28; }
 
 .hero__inner { position: relative; z-index: 1; }
 
@@ -472,6 +504,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.8s var(--ease);
+}
+.work-card__media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(to top, rgba(var(--navy-rgb), 0.45), transparent);
+  pointer-events: none;
 }
 .work-card:hover .work-card__media img,
 .work-card:hover .work-card__media svg { transform: scale(1.04); }
@@ -697,10 +737,36 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* 7. CASE STUDY PAGES ====================================================== */
 
 .case-hero {
+  position: relative;
   background: var(--navy-deep);
   color: var(--mist);
   padding-block: clamp(4rem, 9vw, 7rem) clamp(3rem, 6vw, 4.5rem);
+  overflow: hidden;
 }
+.case-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.case-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.case-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg,
+      rgba(var(--navy-rgb), 0.92) 0%,
+      rgba(var(--navy-rgb), 0.78) 48%,
+      rgba(var(--navy-rgb), 0.55) 100%);
+}
+.case-hero > .container { position: relative; z-index: 1; }
 .case-hero__title { font-size: var(--step-h1); color: var(--white); margin-block: 1.5rem 1.25rem; max-width: 18ch; }
 .case-hero__lede { font-size: var(--step-body-lg); color: var(--mist-soft); max-width: 56ch; }
 
@@ -726,6 +792,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Full-width project image band */
 .case-figure { margin: 0; }
 .case-figure__media { background: var(--navy-panel); overflow: hidden; }
+.case-figure__media img { width: 100%; height: auto; object-fit: cover; }
 .case-figure figcaption {
   font-family: var(--font-mono);
   font-size: var(--step-micro);
@@ -735,6 +802,92 @@ ul { margin: 0; padding: 0; list-style: none; }
   margin-top: 0.9rem;
 }
 .section--dark .case-figure figcaption { color: var(--mist-soft); }
+
+/* Before / after comparison */
+.ba {
+  margin: 0;
+}
+.ba__frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-panel);
+  aspect-ratio: 16 / 10;
+  user-select: none;
+}
+.ba__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.ba__img--before {
+  clip-path: inset(0 calc(100% - var(--ba-split, 50%)) 0 0);
+}
+.ba__range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 3;
+}
+.ba__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--ba-split, 50%);
+  width: 2px;
+  background: var(--gold);
+  transform: translateX(-1px);
+  pointer-events: none;
+  z-index: 2;
+}
+.ba__handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--navy-deep);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(var(--navy-rgb), 0.35);
+}
+.ba__handle::after {
+  content: "‹ ›";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: -0.08em;
+  font-family: var(--font-mono);
+}
+.ba__tag {
+  position: absolute;
+  bottom: 1rem;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: var(--step-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy-deep);
+  background: var(--gold);
+  padding: 0.3rem 0.55rem;
+  pointer-events: none;
+}
+.ba__tag--before { left: 1rem; }
+.ba__tag--after { right: 1rem; }
+.ba__frame:focus-within .ba__handle::before {
+  box-shadow: 0 0 0 3px var(--gold), 0 0 0 6px rgba(var(--navy-rgb), 0.45);
+}
 
 /* Two-column narrative block: sticky heading beside body copy */
 .case-block {
@@ -883,6 +1036,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-size: var(--step-micro);
   letter-spacing: 0.08em;
 }
+.footer-bottom a { text-decoration: underline; text-underline-offset: 0.2em; }
+.footer-bottom a:hover { color: var(--copper); }
 
 /* 9. MOTION ================================================================ */
 
@@ -902,7 +1057,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .reveal[data-delay="3"] { transition-delay: 0.24s; }
 .reveal[data-delay="4"] { transition-delay: 0.32s; }
 
-/* Respect the visitor's system setting for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -910,6 +1064,8 @@ ul { margin: 0; padding: 0; list-style: none; }
     transition-duration: 0.001ms !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .hero__video { display: none; }
+  .hero__media { background-image: url("../assets/media/hero-fallback.jpg"); }
 }
 
 /* 9b. SMALL UTILITY CLASSES ================================================
@@ -995,4 +1151,5 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 420px) {
   .hero__meta { grid-template-columns: minmax(0, 1fr); }
+  .ba__frame { aspect-ratio: 4 / 3; }
 }

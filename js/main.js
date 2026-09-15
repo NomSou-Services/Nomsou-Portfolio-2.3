@@ -7,7 +7,8 @@
      3. Sticky header shadow
      4. Scroll reveal animations
      5. Contact form (validation + Supabase submit)
-     6. Case study view counter
+     6. Hero video + before/after sliders
+     7. Case study view counter
    Each part checks that the elements it needs exist first, so the same file
    can be loaded on every page.
    ========================================================================== */
@@ -236,7 +237,38 @@
     });
   }
 
-  /* 6. CASE STUDY VIEW COUNTER ---------------------------------------------- */
+  /* 6. HERO VIDEO + BEFORE/AFTER -------------------------------------------- */
+
+  var heroVideo = document.querySelector(".hero__video");
+  if (heroVideo) {
+    var reduceMotion =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      heroVideo.pause();
+      heroVideo.removeAttribute("autoplay");
+    } else {
+      var playPromise = heroVideo.play();
+      if (playPromise && playPromise.catch) playPromise.catch(function () {});
+    }
+  }
+
+  var baFrames = document.querySelectorAll(".ba__frame");
+  Array.prototype.forEach.call(baFrames, function (frame) {
+    var range = frame.querySelector(".ba__range");
+    if (!range) return;
+
+    var setSplit = function (value) {
+      var pct = Math.max(0, Math.min(100, Number(value)));
+      frame.style.setProperty("--ba-split", pct + "%");
+    };
+
+    setSplit(range.value);
+    range.addEventListener("input", function () {
+      setSplit(range.value);
+    });
+  });
+
+  /* 7. CASE STUDY VIEW COUNTER ---------------------------------------------- */
 
   var counterEl = document.querySelector("[data-project-slug]");
 
