@@ -49,3 +49,8 @@ tallgrass-after.jpg
 tallgrass-garden.jpg
   https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg
   Pixabay 815297 — Tallgrass garden figure
+
+cover-maple-and-main-coffee.jpg
+  https://cdn.pixabay.com/photo/2017/08/07/07/06/coffeehouse-2600877_1280.jpg
+  https://pixabay.com/photos/coffeehouse-bar-shop-cafe-espresso-2600877/
+  Pixabay 2600877 — Maple & Main work-grid cover (StockSnap)

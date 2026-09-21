@@ -484,9 +484,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   gap: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 /* First and last cards span both columns — full, half, half, full.
-   That rhythm keeps the grid from leaving a lonely card in one column. */
+   That rhythm keeps the grid from leaving a lonely card in one column.
+   With three cards, the middle one would sit alone, so it spans full width too. */
 .work-grid > .work-card:first-child,
-.work-grid > .work-card:last-child { grid-column: 1 / -1; }
+.work-grid > .work-card:last-child,
+.work-grid > .work-card:nth-child(2):nth-last-child(2) { grid-column: 1 / -1; }
 
 .work-card { display: block; color: inherit; }
 
@@ -497,7 +499,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   aspect-ratio: 16 / 10;
 }
 .work-card:first-child .work-card__media,
-.work-card:last-child .work-card__media { aspect-ratio: 21 / 9; }
+.work-card:last-child .work-card__media,
+.work-grid > .work-card:nth-child(2):nth-last-child(2) .work-card__media { aspect-ratio: 21 / 9; }
 
 .work-card__media img,
 .work-card__media svg {
@@ -1143,7 +1146,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 
   .work-grid { grid-template-columns: minmax(0, 1fr); }
   .work-grid > .work-card:first-child .work-card__media,
-  .work-grid > .work-card:last-child .work-card__media { aspect-ratio: 4 / 3; }
+  .work-grid > .work-card:last-child .work-card__media,
+  .work-grid > .work-card:nth-child(2):nth-last-child(2) .work-card__media { aspect-ratio: 4 / 3; }
   .form__row { grid-template-columns: minmax(0, 1fr); }
   .form > .btn { justify-self: stretch; justify-content: center; }
   .footer-grid { grid-template-columns: minmax(0, 1fr); }
