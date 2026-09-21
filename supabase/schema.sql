@@ -72,7 +72,8 @@ insert into public.project_views (slug) values
   ('cornerstone-realty'),
   ('ridgeline-property'),
   ('fieldnote-provisions'),
-  ('tallgrass-landscape')
+  ('tallgrass-landscape'),
+  ('maple-and-main-coffee')
 on conflict (slug) do nothing;
 
 

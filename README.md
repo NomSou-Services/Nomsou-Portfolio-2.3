@@ -14,8 +14,9 @@ index.html                  Homepage
 work/
   cornerstone-realty.html   Case study 01 — brokerage
   ridgeline-property.html   Case study 02 — property management
-  fieldnote-provisions.html Case study 03 — local retail
-  tallgrass-landscape.html  Case study 04 — home services
+  fieldnote-provisions.html   Case study 03 — local retail
+  tallgrass-landscape.html    Case study 04 — home services
+  maple-and-main-coffee.html  Case study 05 — North Georgia cafe
 css/
   style.css                 All styling. Section 1 holds every color and size.
   fonts.css                 The two typefaces, served from this site

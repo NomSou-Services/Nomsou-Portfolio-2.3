@@ -49,3 +49,28 @@ tallgrass-after.jpg
 tallgrass-garden.jpg
   https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg
   Pixabay 815297 — Tallgrass garden figure
+
+cover-maple-and-main-coffee.jpg
+  https://cdn.pixabay.com/photo/2017/08/07/07/06/coffeehouse-2600877_1280.jpg
+  https://pixabay.com/photos/coffeehouse-bar-shop-cafe-espresso-2600877/
+  Pixabay 2600877 — Maple & Main project card + case-study banner (StockSnap)
+
+maple-before.jpg
+  https://cdn.pixabay.com/photo/2021/07/27/16/12/smartphone-6497322_1280.jpg
+  https://pixabay.com/photos/smartphone-hands-man-texting-6497322/
+  Pixabay 6497322 — hours lived in a text thread (before) (Van3ssa_)
+
+maple-after.jpg
+  https://cdn.pixabay.com/photo/2017/09/04/18/39/coffee-2714970_1280.jpg
+  https://pixabay.com/photos/coffee-coffee-cup-cup-drink-beans-2714970/
+  Pixabay 2714970 — latte the site is built to sell (after) (cocoparisienne)
+
+maple-latte.jpg
+  https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471_1280.jpg
+  https://pixabay.com/photos/coffee-pen-notebook-open-notebook-2306471/
+  Pixabay 2306471 — Maple & Main menu-and-pause figure (Engin_Akyurt)
+
+maple-pastry.jpg
+  https://cdn.pixabay.com/photo/2014/10/22/19/18/coffee-498806_1280.jpg
+  https://pixabay.com/photos/coffee-scone-breakfast-dessert-498806/
+  Pixabay 498806 — Maple & Main short-menu figure (FirstAlt)
