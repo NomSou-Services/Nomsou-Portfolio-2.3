@@ -1,7 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/work/fieldnote-provisions", "destination": "/work/fieldnote-provisions.html" },
+    { "source": "/work/tallgrass-landscape", "destination": "/work/tallgrass-landscape.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
