@@ -29,8 +29,14 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# Pretty URLs: /work/fieldnote-provisions instead of the .html file
+# Extensionless case-study URLs. Explicit paths so a request for the .html
+# file is not rewritten to *.html.html. Status 200 keeps both addresses.
 [[redirects]]
-  from = "/work/:slug"
-  to = "/work/:slug.html"
+  from = "/work/fieldnote-provisions"
+  to = "/work/fieldnote-provisions.html"
+  status = 200
+
+[[redirects]]
+  from = "/work/tallgrass-landscape"
+  to = "/work/tallgrass-landscape.html"
   status = 200

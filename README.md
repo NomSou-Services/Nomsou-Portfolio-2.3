@@ -92,8 +92,11 @@ and point it at an email service or a Netlify function.
 ## Deploying to Vercel
 
 The repo is ready to deploy as-is: `vercel.json` sets the security and cache
-headers and turns on clean URLs, so `/work/cornerstone-realty` works without
-the `.html`. There is no build step — Vercel serves the folder.
+headers. Case-study links keep the `.html` so the folder still opens off the
+desktop, and a rewrite also serves `/work/fieldnote-provisions` and
+`/work/tallgrass-landscape` without the extension. `cleanUrls` stays off:
+with it on, Vercel redirects `*.html` to the extensionless path, and those
+paths 404'd for the case studies. There is no build step — Vercel serves the folder.
 
 1. Push this folder to GitHub (see below).
 2. In Vercel: **Add New → Project**, import the repo.
@@ -104,12 +107,13 @@ the `.html`. There is no build step — Vercel serves the folder.
 Every push to `main` redeploys automatically after that. Pull requests get
 their own preview URL.
 
-One detail worth knowing: clean URLs mean the live address of a case study is
-`/work/cornerstone-realty`, with no `.html`. The links inside the pages still
-say `cornerstone-realty.html` so the folder also works when you open
-`index.html` straight off your desktop — Vercel redirects those to the clean
-address. The `canonical` tags and `sitemap.xml` already name the clean URLs,
-which is what search engines index.
+One detail worth knowing: the public case-study addresses in `sitemap.xml`
+and the `canonical` tags have no `.html`
+(`/work/fieldnote-provisions`, `/work/tallgrass-landscape`). The links inside
+the pages still say `.html` so the folder also works when you open
+`index.html` straight off your desktop. The rewrites in `vercel.json` and
+`netlify.toml` serve the same HTML at the extensionless address, with status
+200, so neither form 404s.
 
 ### First push
 
