@@ -270,8 +270,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .btn--ghost {
   background: transparent;
+  color: var(--navy-deep);
+  border-color: rgba(var(--navy-rgb), 0.45);
+}
+.hero .btn--ghost,
+.case-hero .btn--ghost,
+.section--dark .btn--ghost,
+.section--navy .btn--ghost {
   color: var(--white);
-  border-color: rgba(var(--mist-rgb), 0.35);
+  border-color: rgba(var(--mist-rgb), 0.55);
 }
 .btn--ghost:hover { background: var(--white); color: var(--navy-deep); border-color: var(--white); }
 
@@ -414,7 +421,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: var(--navy-deep) url("../assets/media/hero-poster.jpg") center / cover no-repeat;
+  background: var(--navy-deep) url("../assets/media/hero-poster.webp") center / cover no-repeat;
 }
 .hero__media img,
 .hero__media video {
@@ -1068,7 +1075,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .reveal { opacity: 1; transform: none; }
   .hero__video { display: none; }
-  .hero__media { background-image: url("../assets/media/hero-fallback.jpg"); }
+  .hero__media { background-image: url("../assets/media/hero-fallback.webp"); }
 }
 
 /* 9b. SMALL UTILITY CLASSES ================================================
@@ -1114,6 +1121,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 760px) {
   .nav-toggle { display: inline-flex; position: relative; }
+  .hero__video { display: none; }
 
   /* Mobile navigation panel */
   .nav {

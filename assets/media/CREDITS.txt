@@ -10,6 +10,8 @@ hero-loop.mp4  (poster: hero-poster.jpg)
   Local encode: H.264, 1280x720, no audio, ~13.5s
 
 PHOTOGRAPHS (CDN originals downloaded into this folder)
+Pages use same-name .webp files (max 1400px wide, compressed under ~150KB).
+The .jpg files are the source stills.
 hero-fallback.jpg
   https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_1280.jpg
   Pixabay 924920 — reduced-motion / no-video hero still
