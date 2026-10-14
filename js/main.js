@@ -127,8 +127,15 @@
   /* 5. CONTACT FORM --------------------------------------------------------- */
 
   var form = document.getElementById("contactForm");
+  var contactFallback = document.getElementById("contactFallback");
+  var contactFormOn = config.ENABLE_CONTACT_FORM === true;
 
-  if (form && data) {
+  // The form ships hidden and the email link ships visible, so visitors
+  // only ever see the form once it is switched on in js/config.js.
+  if (form) form.hidden = !contactFormOn;
+  if (contactFallback) contactFallback.hidden = contactFormOn;
+
+  if (form && data && contactFormOn) {
     var statusEl = document.getElementById("formStatus");
     var submitBtn = document.getElementById("formSubmit");
     var submitLabel = submitBtn ? submitBtn.innerHTML : "";
@@ -194,11 +201,6 @@
         var firstInput = form.elements[firstError];
         if (firstInput) firstInput.focus();
         showStatus("Please fix the highlighted fields.", "error");
-        return;
-      }
-
-      if (config.ENABLE_CONTACT_FORM === false) {
-        showStatus("Form submitting is switched off in js/config.js.", "error");
         return;
       }
 
@@ -289,7 +291,7 @@
 
   var counterEl = document.querySelector("[data-project-slug]");
 
-  if (counterEl && data && config.ENABLE_VIEW_COUNTER !== false) {
+  if (counterEl && data && config.ENABLE_VIEW_COUNTER === true) {
     var slug = counterEl.getAttribute("data-project-slug");
     var valueEl = counterEl.querySelector("[data-view-value]");
 
