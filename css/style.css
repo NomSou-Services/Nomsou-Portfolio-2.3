@@ -1074,7 +1074,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     transition-duration: 0.001ms !important;
   }
   .reveal { opacity: 1; transform: none; }
-  .hero__video { display: none; }
+  .hero__media video { display: none; }
   .hero__media { background-image: url("../assets/media/hero-fallback.webp"); }
 }
 
@@ -1121,7 +1121,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 760px) {
   .nav-toggle { display: inline-flex; position: relative; }
-  .hero__video { display: none; }
+  .hero__media video { display: none; }
 
   /* Mobile navigation panel */
   .nav {
