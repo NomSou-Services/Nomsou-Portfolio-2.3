@@ -14,7 +14,7 @@ window.NOMSOU_CONFIG = {
   SUPABASE_URL: "https://YOUR-PROJECT-REF.supabase.co",
   SUPABASE_ANON_KEY: "YOUR-PUBLIC-ANON-KEY",
 
-  // Set to false while developing locally if you do not want to write test rows.
-  ENABLE_CONTACT_FORM: true,
-  ENABLE_VIEW_COUNTER: true
+  // Off until a real Supabase project replaces the placeholders above.
+  ENABLE_CONTACT_FORM: false,
+  ENABLE_VIEW_COUNTER: false
 };

@@ -127,8 +127,15 @@
   /* 5. CONTACT FORM --------------------------------------------------------- */
 
   var form = document.getElementById("contactForm");
+  var contactFallback = document.getElementById("contactFallback");
+  var contactFormOn = config.ENABLE_CONTACT_FORM === true;
 
-  if (form && data) {
+  // The form ships hidden and the email link ships visible, so visitors
+  // only ever see the form once it is switched on in js/config.js.
+  if (form) form.hidden = !contactFormOn;
+  if (contactFallback) contactFallback.hidden = contactFormOn;
+
+  if (form && data && contactFormOn) {
     var statusEl = document.getElementById("formStatus");
     var submitBtn = document.getElementById("formSubmit");
     var submitLabel = submitBtn ? submitBtn.innerHTML : "";
@@ -197,11 +204,6 @@
         return;
       }
 
-      if (config.ENABLE_CONTACT_FORM === false) {
-        showStatus("Form submitting is switched off in js/config.js.", "error");
-        return;
-      }
-
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending…";
@@ -241,15 +243,32 @@
 
   var heroVideo = document.querySelector(".hero__video");
   if (heroVideo) {
-    var reduceMotion =
-      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      heroVideo.pause();
-      heroVideo.removeAttribute("autoplay");
-    } else {
+    var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var wideQuery = window.matchMedia("(min-width: 761px)");
+
+    var syncHeroVideo = function () {
+      var allow = wideQuery.matches && !reduceQuery.matches;
+      if (!allow) {
+        heroVideo.pause();
+        heroVideo.removeAttribute("autoplay");
+        return;
+      }
+      if (!heroVideo.querySelector("source")) {
+        var source = document.createElement("source");
+        source.src = "assets/media/hero-loop.mp4";
+        source.type = "video/mp4";
+        heroVideo.appendChild(source);
+        heroVideo.preload = "metadata";
+        heroVideo.load();
+      }
+      heroVideo.setAttribute("autoplay", "");
       var playPromise = heroVideo.play();
       if (playPromise && playPromise.catch) playPromise.catch(function () {});
-    }
+    };
+
+    syncHeroVideo();
+    if (wideQuery.addEventListener) wideQuery.addEventListener("change", syncHeroVideo);
+    if (reduceQuery.addEventListener) reduceQuery.addEventListener("change", syncHeroVideo);
   }
 
   var baFrames = document.querySelectorAll(".ba__frame");
@@ -272,7 +291,7 @@
 
   var counterEl = document.querySelector("[data-project-slug]");
 
-  if (counterEl && data && config.ENABLE_VIEW_COUNTER !== false) {
+  if (counterEl && data && config.ENABLE_VIEW_COUNTER === true) {
     var slug = counterEl.getAttribute("data-project-slug");
     var valueEl = counterEl.querySelector("[data-view-value]");
 
